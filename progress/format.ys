@@ -1,0 +1,15 @@
+func ByteFormat(size) {
+    if size < 0 {
+        return "0 B"
+    }
+    if size < 1024 {
+        return string(size) + " B"
+    }
+    if size < 1048576 {
+        return string(int(size / 1024)) + " KiB"
+    }
+    if size < 1073741824 {
+        return string(int(size / 1048576)) + " MiB"
+    }
+    return string(int(size / 1073741824)) + " GiB"
+}

@@ -1,0 +1,60 @@
+import ["string"]
+
+func rp_channel(value) {
+    if value < 0 {
+        return 0
+    }
+    if value > 255 {
+        return 255
+    }
+    return int(value)
+}
+
+func ColorText(text, foreground, background, style) {
+    let codes = []
+    if style > 0 {
+        codes.append(string(style))
+    }
+    if foreground > 0 {
+        codes.append(string(foreground))
+    }
+    if background > 0 {
+        codes.append(string(background))
+    }
+    if codes.len() == 0 {
+        return text
+    }
+    return "\x1b[" + strings.Join(codes, ";") + "m" + text + "\x1b[0m"
+}
+
+func CustomColorBar(current, total, width, fill, empty, foreground, background, style) {
+    let bar_width = rp_width(width)
+    let done = rp_filled_width(current, total, bar_width)
+    let filled = ColorText(fill.repeat(done), foreground, background, style)
+    let rest = ColorText(empty.repeat(bar_width - done), foreground, background, style)
+    return "[" + filled + rest + "] " + string(Percent(current, total)) + "%"
+}
+
+func ColorBar(current, total, width, color) {
+    return CustomColorBar(current, total, width, "█", "░", color, 0, 0)
+}
+
+func ColorRGB(text, red, green, blue) {
+    let channels = string(rp_channel(red)) + ";" + string(rp_channel(green)) + ";" + string(rp_channel(blue))
+    let prefix = "\x1b[38;2;" + channels + "m"
+    return prefix + text + "\x1b[0m"
+}
+
+func BackgroundRGB(text, red, green, blue) {
+    let channels = string(rp_channel(red)) + ";" + string(rp_channel(green)) + ";" + string(rp_channel(blue))
+    let prefix = "\x1b[48;2;" + channels + "m"
+    return prefix + text + "\x1b[0m"
+}
+
+func RGBBar(current, total, width, red, green, blue) {
+    let bar_width = rp_width(width)
+    let done = rp_filled_width(current, total, bar_width)
+    let filled = ColorRGB("█".repeat(done), red, green, blue)
+    let rest = "░".repeat(bar_width - done)
+    return "[" + filled + rest + "] " + string(Percent(current, total)) + "%"
+}

@@ -1,0 +1,9 @@
+import ["string"]
+
+func Multi(tasks, width) {
+    let rows = []
+    for task in tasks {
+        rows.append(task.name + " " + Bar(task.current, task.total, width))
+    }
+    return strings.Join(rows, "\n")
+}

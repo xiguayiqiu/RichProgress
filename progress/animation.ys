@@ -1,0 +1,30 @@
+func Spinner(frame) {
+    let frames = "|/-\\"
+    let index = frame % frames.len()
+    if index < 0 {
+        index = index + frames.len()
+    }
+    return frames.char_at(index)
+}
+
+func SpinnerLine(frame, label) {
+    return Spinner(frame) + " " + label
+}
+
+func Pulse(frame, width) {
+    if width <= 0 {
+        return "[]"
+    }
+    if width == 1 {
+        return "[>]"
+    }
+    let cycle = (width - 1) * 2
+    let pos = frame % cycle
+    if pos < 0 {
+        pos = pos + cycle
+    }
+    if pos >= width {
+        pos = cycle - pos
+    }
+    return "[" + ".".repeat(pos) + ">" + ".".repeat(width - pos - 1) + "]"
+}

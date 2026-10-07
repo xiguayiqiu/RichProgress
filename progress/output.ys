@@ -1,0 +1,7 @@
+func PrintBar(current, total, width) {
+    print("\r" + Bar(current, total, width))
+}
+
+func FinishBar(current, total, width) {
+    println("\r" + Bar(current, total, width))
+}
