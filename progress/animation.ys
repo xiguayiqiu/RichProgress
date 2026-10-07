@@ -1,3 +1,5 @@
+package progress
+
 func Spinner(frame) {
     let frames = "|/-\\"
     let index = frame % frames.len()

@@ -21,7 +21,7 @@ RichProgress/
 在 YScript 项目中登记此库：
 
 ```sh
-ysc mod get RichProgress/progress
+ysc mod get https://github.com/xiguayiqiu/RichProgress.git
 ```
 
 在脚本中导入：
@@ -45,6 +45,31 @@ Ascii(37, 100, 20)        // [#######-------------] 37%
 Dots(37, 100, 20)         // (●●●●●●●○○○○○○○○○○○○○) 37%
 Arrow(37, 100, 20)        // [======>.............] 37%
 ColorBar(37, 100, 20, 32) // 绿色 ANSI 进度条
+```
+
+除原有四种样式外，`progress/bar.ys` 新增 24 种 `current, total, width` 形式的进度条：
+
+| 函数 | 填充 / 空白 | 函数 | 填充 / 空白 |
+|---|---|---|---|
+| `ShadeBar` | `▓ / ░` | `MediumBar` | `▒ / ░` |
+| `ThinBar` | `━ / ─` | `DoubleBar` | `═ / ─` |
+| `SquareBar` | `■ / □` | `DiamondBar` | `◆ / ◇` |
+| `StarBar` | `★ / ☆` | `HeartBar` | `♥ / ♡` |
+| `PlusBar` | `+ / -` | `HashBar` | `# / -` |
+| `EqualBar` | `= / .` | `DotBar` | `● / ·` |
+| `WaveBar` | `~ / ·` | `PipeBar` | `| / .` |
+| `SlashBar` | `/ / .` | `PixelBar` | `▪ / ▫` |
+| `SegmentBar` | `▰ / ▱` | `BrickBar` | `▉ / ▏` |
+| `BlockSpaceBar` | `█ / 空格` | `ChevronBar` | `> / -` |
+| `CircleFrameBar` | `● / ·`，圆括号边框 | `AngleFrameBar` | `━ / ─`，尖括号边框 |
+| `CurlyFrameBar` | `# / -`，花括号边框 | `PipeFrameBar` | `= / .`，竖线边框 |
+
+例如：
+
+```yscript
+println(ShadeBar(37, 100, 20))
+println(HeartBar(37, 100, 20))
+println(AngleFrameBar(37, 100, 20))
 ```
 
 `CustomBar` 可自定义填充字符、空白字符和两侧边界：
@@ -115,6 +140,13 @@ println(Multi(tasks, 18))
 | `Ascii(current, total, width)` | ASCII 兼容进度条 |
 | `Dots(current, total, width)` | 圆点样式进度条 |
 | `Arrow(current, total, width)` | 带移动指针的进度条 |
+| `ShadeBar` / `MediumBar` | 阴影块字符进度条 |
+| `ThinBar` / `DoubleBar` | 单线或双线进度条 |
+| `SquareBar` / `DiamondBar` / `StarBar` / `HeartBar` | 几何形状与符号进度条 |
+| `PlusBar` / `HashBar` / `EqualBar` / `ChevronBar` | ASCII 风格进度条 |
+| `DotBar` / `WaveBar` / `PipeBar` / `SlashBar` | 点线与符号进度条 |
+| `PixelBar` / `SegmentBar` / `BrickBar` / `BlockSpaceBar` | 像素、分段与块状进度条 |
+| `CircleFrameBar` / `AngleFrameBar` / `CurlyFrameBar` / `PipeFrameBar` | 自定义边框进度条 |
 | `CustomBar(current, total, width, fill, empty, left, right)` | 自定义字符和边界 |
 | `ColorBar(current, total, width, color)` | ANSI 彩色块状进度条 |
 | `CustomColorBar(current, total, width, fill, empty, fg, bg, style)` | 自定义字符及 ANSI 前景、背景、样式 |

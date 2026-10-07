@@ -1,3 +1,5 @@
+package progress
+
 func rp_clamp(current, total) {
     if current < 0 {
         return 0
@@ -62,6 +64,102 @@ func Arrow(current, total, width) {
     }
     let body = "[" + "=".repeat(done) + ">" + ".".repeat(bar_width - done - 1) + "] "
     return body + string(Percent(current, total)) + "%"
+}
+
+func ShadeBar(current, total, width) {
+    return CustomBar(current, total, width, "▓", "░", "[", "]")
+}
+
+func MediumBar(current, total, width) {
+    return CustomBar(current, total, width, "▒", "░", "[", "]")
+}
+
+func ThinBar(current, total, width) {
+    return CustomBar(current, total, width, "━", "─", "[", "]")
+}
+
+func DoubleBar(current, total, width) {
+    return CustomBar(current, total, width, "═", "─", "[", "]")
+}
+
+func SquareBar(current, total, width) {
+    return CustomBar(current, total, width, "■", "□", "[", "]")
+}
+
+func DiamondBar(current, total, width) {
+    return CustomBar(current, total, width, "◆", "◇", "[", "]")
+}
+
+func StarBar(current, total, width) {
+    return CustomBar(current, total, width, "★", "☆", "[", "]")
+}
+
+func HeartBar(current, total, width) {
+    return CustomBar(current, total, width, "♥", "♡", "[", "]")
+}
+
+func PlusBar(current, total, width) {
+    return CustomBar(current, total, width, "+", "-", "[", "]")
+}
+
+func HashBar(current, total, width) {
+    return CustomBar(current, total, width, "#", "-", "[", "]")
+}
+
+func EqualBar(current, total, width) {
+    return CustomBar(current, total, width, "=", ".", "[", "]")
+}
+
+func DotBar(current, total, width) {
+    return CustomBar(current, total, width, "●", "·", "[", "]")
+}
+
+func WaveBar(current, total, width) {
+    return CustomBar(current, total, width, "~", "·", "[", "]")
+}
+
+func PipeBar(current, total, width) {
+    return CustomBar(current, total, width, "|", ".", "[", "]")
+}
+
+func SlashBar(current, total, width) {
+    return CustomBar(current, total, width, "/", ".", "[", "]")
+}
+
+func PixelBar(current, total, width) {
+    return CustomBar(current, total, width, "▪", "▫", "[", "]")
+}
+
+func SegmentBar(current, total, width) {
+    return CustomBar(current, total, width, "▰", "▱", "[", "]")
+}
+
+func BrickBar(current, total, width) {
+    return CustomBar(current, total, width, "▉", "▏", "[", "]")
+}
+
+func BlockSpaceBar(current, total, width) {
+    return CustomBar(current, total, width, "█", " ", "[", "]")
+}
+
+func ChevronBar(current, total, width) {
+    return CustomBar(current, total, width, ">", "-", "[", "]")
+}
+
+func CircleFrameBar(current, total, width) {
+    return CustomBar(current, total, width, "●", "·", "(", ")")
+}
+
+func AngleFrameBar(current, total, width) {
+    return CustomBar(current, total, width, "━", "─", "<", ">")
+}
+
+func CurlyFrameBar(current, total, width) {
+    return CustomBar(current, total, width, "#", "-", "{", "}")
+}
+
+func PipeFrameBar(current, total, width) {
+    return CustomBar(current, total, width, "=", ".", "|", "|")
 }
 
 func ByteBar(current, total, width) {

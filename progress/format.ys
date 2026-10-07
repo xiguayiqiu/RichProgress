@@ -1,3 +1,5 @@
+package progress
+
 func ByteFormat(size) {
     if size < 0 {
         return "0 B"

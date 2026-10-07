@@ -1,3 +1,5 @@
+package progress
+
 func PrintBar(current, total, width) {
     print("\r" + Bar(current, total, width))
 }
